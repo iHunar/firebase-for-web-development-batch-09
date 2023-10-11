@@ -4,12 +4,14 @@ const password = document.getElementById("password")
 const SignUp = () => {
     firebase.auth().signInWithEmailAndPassword(email.value, password.value)
         .then((user) => {
-            console.log("user", user.user);
             message.innerHTML = "Success";
             message.style.color = "green";
-            setTimeout(() => {
+            if (user.user.emailVerified) {
                 window.location.assign("./home.html")
-            }, 2000);
+            } else {
+                window.location.assign("./email-verification.html")
+            }
+
         }).catch((err) => {
             message.innerHTML = err.message;
             message.style.color = "red"

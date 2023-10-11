@@ -1,10 +1,11 @@
 firebase.auth().onAuthStateChanged((user) => {
     if (user) {
-        console.log("log in true");
-        // console.log("user>>>>>>>>>>>>>>>>",user)
-        window.location.assign("./home.html")
+        if (user.emailVerified) {
+            window.location.assign("./pages/home.html")
+        } else {
+            window.location.assign("./pages/email-verification.html")
+        }
     } else {
-        console.log("User is signed out")
-        window.location.assign("./log-in.html")
+        window.location.assign("./pages/log-in.html")
     }
 });

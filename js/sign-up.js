@@ -4,12 +4,17 @@ const password = document.getElementById("password")
 const SignUp = () => {
     firebase.auth().createUserWithEmailAndPassword(email.value, password.value)
         .then((user) => {
-            console.log("user", user.user);
-            message.innerHTML = "Success";
-            message.style.color = "green";
-            setTimeout(() => {
-                window.location.assign("./home.html")
-            }, 2000);
+            user.user.sendEmailVerification()
+                .then(() => {
+                    // Email verification sent!
+                    message.innerHTML = "Success";
+                    message.style.color = "green";
+                    setTimeout(() => {
+                        window.location.assign("./email-verification.html")
+                    }, 2000);
+                });
+
+
         }).catch((err) => {
             message.innerHTML = err.message;
             message.style.color = "red"

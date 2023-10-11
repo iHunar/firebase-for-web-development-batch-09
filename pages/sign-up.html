@@ -6,22 +6,10 @@
     <title>Document</title>
     <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-auth.js"></script>
-    <script>
-      const firebaseConfig = {
-        apiKey: "AIzaSyC5JQMAdXuQcKVCpwjfzQCoZzsIQJxV6wE",
-        authDomain: "testing-8febd.firebaseapp.com",
-        databaseURL: "https://testing-8febd-default-rtdb.firebaseio.com",
-        projectId: "testing-8febd",
-        storageBucket: "testing-8febd.appspot.com",
-        messagingSenderId: "217189145286",
-        appId: "1:217189145286:web:432b4c474ed24f050515c7",
-        measurementId: "G-T5YZ51YGFQ",
-      };
-      firebase.initializeApp(firebaseConfig);
-    </script>
+    <script src="./../js/firebase.js"></script>
   </head>
   <body>
-    <h1>Log In</h1>
+    <h1>Sign Up</h1>
     <form onsubmit="SignUp();return false">
       <input
         type="email"
@@ -38,10 +26,10 @@
         required
         />
         <p id="message"></p>
-      <input type="submit" value="Log In" />
+      <input type="submit" value="Sign Up" />
     </form>
 
-    <a href="./sign-up.html">Sign Up</a>
-    <script src="./js/log-in.js"></script>
+    <a href="./log-in.html">Log In</a>
+    <script src="./../js/sign-up.js"></script>
   </body>
 </html>

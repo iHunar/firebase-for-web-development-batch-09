@@ -1,22 +1,25 @@
 firebase.auth().onAuthStateChanged((user) => {
     if (user) {
-        console.log("log in true");
-        console.log("user>>>>>>>>>>>>>>>>",user)
+        if (user.emailVerified) {
+            console.log("emailVerified true");
+        } else {
+            window.location.assign("./email-verification.html")
+        }
     } else {
-        // console.log("User is signed out")
         window.location.assign("./log-in.html")
     }
 });
 
 
 
-const LogOut = () =>{
+const LogOut = () => {
     firebase.auth().signOut().then(() => {
         // Sign-out successful.
-        window.location.assign("./log-in.html")
-      }).catch((error) => {
+        window.location.assign("./../log-in.html")
+    }).catch((error) => {
         // An error happened.
-      });
+    });
 
     // window.location.assign("./log-in.html")
 }
+
