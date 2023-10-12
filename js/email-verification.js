@@ -1,5 +1,6 @@
 const email = document.getElementById("email")
 firebase.auth().onAuthStateChanged((user) => {
+    console.log(user)
     if (user) {
         email.innerHTML = user.email
         if (user.emailVerified) {

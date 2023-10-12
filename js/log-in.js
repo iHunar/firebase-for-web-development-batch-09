@@ -17,3 +17,20 @@ const SignUp = () => {
             message.style.color = "red"
         })
 }
+
+
+
+
+// google sign
+const sgnInWithGoogleHandler = () => {
+    var provider = new firebase.auth.GoogleAuthProvider();
+    firebase.auth()
+        .signInWithPopup(provider)
+        .then((result) => {
+            console.log("result", result);
+            window.location.assign("./home.html")
+        }).catch((error) => {
+            var errorMessage = error.message;
+            console.log("errorMessage", errorMessage)
+        });
+}

@@ -6,12 +6,25 @@
     <title>Document</title>
     <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
     <script src="./../js/firebase.js"></script>
   </head>
   <body>
     <h1>Home Page</h1>
-    <button onclick="activeUser()">Active User</button>
+    <form onsubmit="emailChangeHandler();return false">
+      <input type="email" placeholder="Email Address" id="email" required/>
+      <input  type="submit" value="Change Email"/>
+    </form>
+
+    <button onclick="deleteAccoundHandler()">Delete Account</button>
     <button onclick="LogOut()">Log Out</button>
+
+    <hr />
+
+    <form onsubmit="addData();return false">
+      <input type="text" id="input" placeholder="Add Something..." required/>
+      <input type="submit" value="Add"/>
+    </form>
     <script src="./../js/home.js"></script>
   </body>
 </html>
