@@ -47,21 +47,3 @@ const deleteAccoundHandler = () => {
     });
 
 }
-
-
-
-// add data
-const input = document.getElementById("input");
-// var database = firebase.database();
-const addData = () => {
-    // firebase.database().ref("todos/" + "todo2").set({
-    //     todo: input.value
-    // })
-
-    firebase.database().ref("todos/").push({
-        todo: input.value,
-        name:"fsdf",
-        email:"fsfds",
-        mobile:"Fsfsd"
-    })
-}

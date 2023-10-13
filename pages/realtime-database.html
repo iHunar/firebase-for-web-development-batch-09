@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
+    <script src="./../js/firebase.js"></script>
+  </head>
+  <style>
+    #message {
+      display: none;
+    }
+    #loading {
+      display: block;
+    }
+    #todo {
+      display: none;
+    }
+    #ol {
+      display: none;
+    }
+  </style>
+  <body>
+    <h5>Realtime Database Page</h5>
+    <a href="./home.html">Home</a>
+    <form onsubmit="addData();return false">
+      <input type="text" id="input" placeholder="Add Something..." required />
+      <p id="message"></p>
+      <input type="submit" value="Add" />
+    </form>
+    <hr />
+
+    <img
+      src="https://i.pinimg.com/originals/c7/e1/b7/c7e1b7b5753737039e1bdbda578132b8.gif"
+      height="50"
+      id="loading"
+    />
+
+    <p id="todo"></p>
+    <ol id="ol"></ol>
+    <!-- <button onclick="editHandler()">Edit</button> -->
+    <!-- <button onclick="deleteHandler()">Delete</button> -->
+    <script src="./../js/realtime-database.js"></script>
+  </body>
+</html>
