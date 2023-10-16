@@ -10,7 +10,9 @@
     <script src="./../js/firebase.js"></script>
   </head>
   <style>
-
+    #message {
+      display: none;
+    }
     #loading {
       display: block;
     }
@@ -22,9 +24,14 @@
     }
   </style>
   <body>
-    <h1>All Todos</h1>
-    <a href="./home.html">Home</a>
-    <a href="./my-todos.html">My Todo</a>
+    <h1>My Todos Page</h1>
+    <form onsubmit="addData();return false">
+      <input type="text" id="input" placeholder="Add Something..." required />
+      <p id="message"></p>
+      <input type="submit" value="Add" />
+    </form>
+    <hr />
+
     <img
       src="https://i.pinimg.com/originals/c7/e1/b7/c7e1b7b5753737039e1bdbda578132b8.gif"
       height="50"
@@ -33,6 +40,6 @@
 
     <p id="todo"></p>
     <ol id="ol"></ol>
-    <script src="./../js/realtime-database.js"></script>
+    <script src="./../js/my-todos.js"></script>
   </body>
 </html>

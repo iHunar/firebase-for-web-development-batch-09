@@ -1,29 +1,3 @@
-const input = document.getElementById("input");
-const message = document.getElementById("message")
-const addData = () => {
-    message.style.display = "block"
-    // firebase.database().ref('todos/' + "userId").set({
-    //     todo: input.value,
-    // });
-    firebase.database().ref('todos/').push({
-        todo: input.value,
-    }).then((success) => {
-        firebase.database().ref('todos/' + success.key).update({
-            key: success.key
-        });
-        message.innerHTML = "Data saved successfully!";
-        message.style.color = "green";
-        setTimeout(() => {
-            message.style.display = "none";
-            input.value = ""
-        }, 1000);
-
-    }).catch((err) => {
-        console.log(err)
-    });
-}
-
-
 // get data
 const loading = document.getElementById("loading");
 const todo = document.getElementById("todo")
@@ -70,31 +44,7 @@ firebase.database().ref('todos/').on("value", (res) => {
         res.forEach((value) => {
             let li = document.createElement("li");
             ol.appendChild(li);
-            console.log("Data >>>>>>>>>>>>>>", value.val())
             li.innerHTML = value.val().todo;
-            // edit button
-            const editButton = document.createElement("button");
-            li.appendChild(editButton);
-            editButton.innerHTML = "Edit";
-            // delete button
-            const deleteButton = document.createElement("button");
-            li.appendChild(deleteButton);
-            deleteButton.innerHTML = "Delete"
-
-
-            // edit function
-            editButton.addEventListener("click", () => {
-                var pro = prompt("", value.val().todo);
-                firebase.database().ref("todos/" + value.val().key).update({
-                    todo: pro
-                })
-            })
-
-
-            // delete function
-            deleteButton.addEventListener("click", () => {
-                firebase.database().ref("todos/" + value.val().key).remove()
-            })
         })
     }
 
