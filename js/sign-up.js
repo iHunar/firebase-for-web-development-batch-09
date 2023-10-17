@@ -18,7 +18,8 @@ const SignUp = () => {
         fullName: fullName.value,
         phoneNumber: phoneNumber.value,
         password: password.value,
-        selectedGender: selectedGender
+        selectedGender: selectedGender,
+        profileUrl: ""
     }
     firebase.auth().createUserWithEmailAndPassword(userData.email, userData.password)
         .then((user) => {
