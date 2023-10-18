@@ -3,16 +3,11 @@ const phone = document.getElementById("phone");
 const email = document.getElementById("email");
 const gender = document.getElementById("gender");
 const profileImage = document.getElementById("profileImage");
-// for (var i = 0; i < gender.lenth; i++) {
-//     console.log(gender[i])
-// }
-// const UpdateHandler = () => {
-//     gender[3].selected = true
-//     // console.log(gender.options[gender.selectedIndex].value  )
-
-// }
-
 let uid;
+let selectedGender;
+const ganderHandler = () => {
+    selectedGender = gender.options[gender.selectedIndex].value
+}
 firebase.auth().onAuthStateChanged((user) => {
     if (user) {
         if (user.emailVerified) {
@@ -25,14 +20,20 @@ firebase.auth().onAuthStateChanged((user) => {
                 fullName.value = userData.fullName;
                 phone.value = userData.phoneNumber;
                 email.value = userData.email;
+                selectedGender = userData.selectedGender
                 // if(userData.profileUrl === ""){
                 //     profileImage.setAttribute("src","https://png.pngtree.com/png-clipart/20210915/ourmid/pngtree-user-avatar-placeholder-png-image_3918418.jpg")
                 // }else{
                 //     profileImage.setAttribute("src",userData.profileUrl)
                 // }
                 profileImage.setAttribute("src", userData.profileUrl === "" ? "https://png.pngtree.com/png-clipart/20210915/ourmid/pngtree-user-avatar-placeholder-png-image_3918418.jpg" : userData.profileUrl)
-
                 // gender
+                for (let i = 0; i < gender.length; i++) {
+                    if (gender[i].value === userData.selectedGender) {
+                        gender[i].setAttribute("selected", "selected")
+
+                    }
+                }
 
             })
         } else {
@@ -59,7 +60,6 @@ const profileUploadHandler = (event) => {
         (snapshot) => {
             progressSlider.style.display = "block"
             var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-
             console.log('Upload is ' + Math.floor(progress) + '% done');
             progressInner.style.width = `${Math.floor(progress)}%`
             progressInner.innerHTML = `${Math.floor(progress)}%`
@@ -78,4 +78,18 @@ const profileUploadHandler = (event) => {
             });
         }
     );
+}
+
+
+
+// update profile
+const updateProfile = () => {
+    const userData = {
+        fullName: fullName.value,
+        phoneNumber: phone.value,
+        selectedGender: selectedGender,
+    }
+    firebase.database().ref("users/" + uid).update(userData).then(() => {
+        alert("Successfylly updated")
+    })
 }

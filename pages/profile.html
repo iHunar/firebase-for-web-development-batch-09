@@ -17,7 +17,7 @@
     <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-storage.js"></script>
     <script src="./../js/firebase.js"></script>
     <style>
-      #progress{
+      #progress {
         display: none;
       }
     </style>
@@ -29,7 +29,11 @@
       style="height: 50px; width: 50px; border-radius: 100px"
       id="profileImage"
     />
-    <input type="file" onchange="profileUploadHandler(event)" accept="image/*" />
+    <input
+      type="file"
+      onchange="profileUploadHandler(event)"
+      accept="image/*"
+    />
     <div class="progress" id="progress">
       <div
         class="progress-bar"
@@ -38,10 +42,9 @@
         aria-valuemin="0"
         aria-valuemax="100"
         id="progressInner"
-      >
-      </div>
+      ></div>
     </div>
-    <form>
+    <form onsubmit="updateProfile();return false">
       <div class="form-group">
         <label for="exampleInputEmail1">Full Name</label>
         <input
@@ -50,6 +53,7 @@
           id="fullName"
           aria-describedby="emailHelp"
           placeholder="Full Name"
+          required
         />
       </div>
       <div class="form-group">
@@ -60,6 +64,7 @@
           id="phone"
           aria-describedby="emailHelp"
           placeholder="Phone Number"
+          required
         />
       </div>
       <div class="form-group">
@@ -71,13 +76,14 @@
           id="email"
           aria-describedby="emailHelp"
           placeholder="Enter email"
+          required
         />
       </div>
       <div class="form-group">
         <label for="exampleFormControlSelect1">Example select</label>
-        <select class="form-control" id="gender">
+        <select class="form-control" id="gender" onchange="ganderHandler()">
           <option value="">Select Gender</option>
-          <option value="Male" selected>Male</option>
+          <option value="Male">Male</option>
           <option value="Female">Female</option>
         </select>
       </div>
