@@ -1,7 +1,9 @@
+let uid;
 firebase.auth().onAuthStateChanged((user) => {
     if (user) {
         if (user.emailVerified) {
             // console.log("emailVerified true");
+            uid = user.uid
         } else {
             window.location.assign("./email-verification.html")
         }
@@ -20,12 +22,15 @@ const textarea = document.getElementById("textarea");
 const checkbox = document.getElementById("checkbox");
 const file = document.getElementById("file");
 let fileUrl = "";
-let fileType = ""
+let fileType = "";
+let media = false
 const checkboxHandler = () => {
     if (checkbox.checked) {
-        file.style.display = "block"
+        file.style.display = "block";
+        media = true
     } else {
-        file.style.display = "none"
+        file.style.display = "none";
+        media = false
     }
 }
 const createPostHandler = () => {
@@ -34,10 +39,17 @@ const createPostHandler = () => {
         textarea: textarea.value,
         createdDate: moment().format(),
         fileUrl: fileUrl,
-        fileType:fileType
+        fileType: fileType,
+        uid: uid,
+        media: media
     }
-
-    console.log("postData", postData)
+    firebase.database().ref("posts/").push(postData).then((res) => {
+        firebase.database().ref("posts/" + res.key).update({
+            key: res.key
+        }).then(() => {
+            location.reload()
+        })
+    })
 }
 
 
