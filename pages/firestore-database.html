@@ -7,6 +7,16 @@
     <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-firestore.js"></script>
     <script src="./../js/firebase.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <style>
+      #loading {
+        display: block;
+      }
+      #container {
+        display: none;
+      }
+    </style>
   </head>
   <body>
     <h1>firebase-firestore Page</h1>
@@ -17,10 +27,8 @@
       <input type="submit" value="Add" />
     </form>
 
-    <h1>Total Users : 20</h1>
-    <h1>Verified Users : 8</h1>
-    <h1>Pending Users : 10</h1>
-    <h1>Passed Users : 2</h1>
+    <img src="https://i.gifer.com/ZKZg.gif" height="50" id="loading" />
+    <div id="container"></div>
     <script src="./../js/firebase-firestore.js"></script>
   </body>
 </html>

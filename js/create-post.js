@@ -41,7 +41,7 @@ const createPostHandler = () => {
         fileUrl: fileUrl,
         fileType: fileType,
         uid: uid,
-        media: media
+        media: media,
     }
     firebase.database().ref("posts/").push(postData).then((res) => {
         firebase.database().ref("posts/" + res.key).update({

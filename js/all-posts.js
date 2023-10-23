@@ -12,6 +12,8 @@ firebase.database().ref("posts/").on("value", (postResp) => {
         postResp.forEach((postValue) => {
             const postData = postValue.val();
             console.log("postData", postData);
+
+
             // post
             const postDiv = document.createElement("div");
             postContainer.appendChild(postDiv);
@@ -21,7 +23,11 @@ firebase.database().ref("posts/").on("value", (postResp) => {
             const postHeader = document.createElement("div");
             postDiv.appendChild(postHeader);
             postHeader.setAttribute("class", "postHeader")
-
+            // user data
+            console.log("postData.id",postData.uid)
+            firebase.database().ref("users/" + postData.uid).on("value", (userRes) => {
+                console.log("userRes", userRes.val())
+            })
             // user profile
             const userProfile = document.createElement("img");
             postHeader.appendChild(userProfile);
